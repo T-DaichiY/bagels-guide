@@ -1,0 +1,208 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="color-scheme" content="light"><title>Bagels Instructions</title><style>
+:root{color-scheme:light;--bg:#f6f7f9;--card:#fff;--ink:#1d2330;--muted:#5d677a;--line:#d3d8e0;--accent:#2f62c9;--tint:#e4edff;--code:#f0f2f6;--ok:#1f7a3d;--okbg:#e2f4e8;--warn:#9a6208;--warnbg:#fff3d6;--bad:#b3392f;--badbg:#fde7e4;
+--ctl:#dce8ff;--gen:#dff3e4;--inp:#fff0d1;--pure:#efe2fb;--dec:#fff7d6;--term:#e8ebf0;--ctl-s:#3b6fd4;--gen-s:#2f9150;--inp-s:#c27d0e;--pure-s:#8a4fc4;--yes:#1f7a3d;--no:#b3392f}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:18px/1.6 system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:860px;margin:0 auto;padding:24px 16px 64px}
+h1{font-size:2rem;margin:0 0 4px;line-height:1.2}
+.sub{color:var(--muted);margin:0 0 20px}
+nav{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 24px}
+nav a{font-size:.85rem;text-decoration:none;color:var(--accent);border:1px solid var(--line);background:var(--card);padding:3px 10px;border-radius:99px}
+section{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px 18px 8px;margin:0 0 18px}
+h2{font-size:1.3rem;margin:0 0 8px;display:flex;gap:10px;align-items:center}
+h2 .num{background:var(--accent);color:#fff;width:32px;height:32px;border-radius:50%;display:grid;place-items:center;font-size:1rem;flex:none}
+h3{font-size:.8rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin:18px 0 6px}
+p{margin:0 0 12px}
+code{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.9em;background:var(--code);padding:1px 5px;border-radius:4px}
+.box{border-radius:8px;padding:10px 14px;margin:0 0 14px;font-size:.95rem}
+.box>b:first-child{display:block;margin-bottom:2px}
+.goal{background:var(--tint)}.try{background:var(--okbg)}.idea{background:var(--warnbg)}
+.box p:last-child{margin:0}
+ul,ol{margin:0 0 14px;padding-left:22px}li{margin:2px 0}
+table{border-collapse:collapse;width:100%;font-size:.92rem;margin:0 0 14px}
+th,td{border:1px solid var(--line);padding:6px 8px;text-align:left;vertical-align:top}
+th{background:var(--term)}
+.spec th{width:28%;background:var(--tint)}
+.F{color:var(--ok);font-weight:700}.P{color:var(--warn);font-weight:700}.B{color:var(--bad);font-weight:700}
+.gfx{border:1px solid var(--line);border-radius:10px;padding:12px;margin:0 0 14px;background:var(--bg)}
+.live{border:2px dashed var(--accent);border-radius:10px;padding:10px 14px;margin:0 0 14px;font-size:.95rem}
+.live b{color:var(--accent)}
+svg{display:block;width:100%;height:auto;max-width:480px;margin:0 auto}
+svg text{fill:var(--ink);font:12px system-ui,sans-serif;text-anchor:middle}
+svg text.m{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:11.5px}
+svg text.y{fill:var(--yes);font-weight:700}svg text.n{fill:var(--no);font-weight:700}svg text.sm{fill:var(--muted);font-size:10.5px}
+.node{stroke:var(--line);stroke-width:1.3}
+.ctl{fill:var(--ctl);stroke:var(--ctl-s)}.gen{fill:var(--gen);stroke:var(--gen-s)}.inp{fill:var(--inp);stroke:var(--inp-s)}.pure{fill:var(--pure);stroke:var(--pure-s)}
+.dec{fill:var(--dec);stroke:var(--inp-s)}.term{fill:var(--term);stroke:var(--line)}
+.ln{fill:none;stroke:var(--muted);stroke-width:1.5}.dash{stroke-dasharray:4 3}.ah{fill:var(--muted)}
+.row{display:flex;gap:5px;flex-wrap:wrap;margin:6px 0;align-items:center}
+.row .lbl{width:100%;font-size:.8rem;color:var(--muted)}
+.tile{width:34px;height:38px;display:grid;place-items:center;border:1.5px solid var(--line);border-radius:6px;font:600 1.05rem ui-monospace,Menlo,monospace;background:var(--card)}
+.tile.pick{background:var(--gen);border-color:var(--gen-s)}.tile.dim{opacity:.4}
+.arrow{color:var(--muted);margin:2px 0;font-size:.85rem}
+.kv{display:grid;grid-template-columns:auto 1fr;gap:6px 12px;font-size:.92rem}
+.kv code{background:var(--term);padding:1px 6px;border-radius:4px}
+.note{font-size:.85rem;color:var(--muted);margin:8px 0 0}
+@media print{body{font-size:14px}section{break-inside:avoid}}
+</style></head><body><main><h1>Build Bagels: instructions</h1>
+<p class="sub">Follow the steps in order. Your teacher codes each module live. Use the module map and spec to know what to build, and run it after every step.</p>
+<nav><a href="#s0">The game</a><a href="#s1">1 Settings</a><a href="#s2">2 Secret</a><a href="#s3">3 Clues</a><a href="#s4">4 Ask</a><a href="#s5">5 One game</a><a href="#s6">6 Main</a><a href="#s7">Errors</a><a href="#s8">Challenges</a></nav>
+<section id="s0"><h2>The game and the big picture</h2>
+<p>The computer thinks of a secret number with <b>no repeated digits</b>. You guess, and it gives clues.</p>
+<table><tr><th>Clue</th><th>Meaning</th></tr><tr><td><b class="F">Fermi</b></td><td>A digit is correct <i>and</i> in the right position.</td></tr><tr><td><b class="P">Pico</b></td><td>A digit is in the secret, but in the wrong position.</td></tr><tr><td><b class="B">Bagels</b></td><td>No digit is correct.</td></tr></table>
+<p>Example: secret <code>248</code>, guess <code>843</code> gives <b>Fermi Pico</b>.</p>
+<h3>How the modules fit together</h3><div class="gfx">
+
+
+<svg viewBox="0 0 460 300" role="img" aria-label="Call graph: main calls play_once, which calls make_secret, ask_guess and get_clues">
+<defs><marker id="a0" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path class="ah" d="M0,0L10,5L0,10z"/></marker></defs>
+<rect class="node ctl" x="160" y="12" width="140" height="36" rx="8"/><text class="m" x="230" y="35">main()</text>
+<rect class="node ctl" x="150" y="82" width="160" height="36" rx="8"/><text class="m" x="230" y="105">play_once()</text>
+<path class="ln" d="M230,48V82" marker-end="url(#a0)"/>
+<text class="sm" x="236" y="68" style="text-anchor:start">repeat until "no"</text>
+<path class="ln" d="M230,118V140H80V163" marker-end="url(#a0)"/>
+<path class="ln" d="M230,118V163" marker-end="url(#a0)"/>
+<path class="ln" d="M230,118V140H380V163" marker-end="url(#a0)"/>
+<rect class="node gen" x="15" y="163" width="130" height="50" rx="8"/><text class="m" x="80" y="184">make_secret()</text><text class="sm" x="80" y="202">builds the secret</text>
+<rect class="node inp" x="165" y="163" width="130" height="50" rx="8"/><text class="m" x="230" y="184">ask_guess()</text><text class="sm" x="230" y="202">reads + validates</text>
+<rect class="node pure" x="315" y="163" width="130" height="50" rx="8"/><text class="m" x="380" y="184">get_clues()</text><text class="sm" x="380" y="202">scores a guess</text>
+<rect class="node term dash" x="20" y="252" width="420" height="34" rx="8"/>
+<text class="m" x="230" y="273">NUM_DIGITS, MAX_GUESSES  (shared settings)</text>
+<path class="ln dash" d="M80,213V252M230,213V252M380,213V252"/>
+</svg>
+<p class="note">Colour key: blue = control flow, green = creates data, amber = user input, purple = pure function (no input or print).</p>
+</div>
+<div class="box goal"><b>Method</b><p>Build one small module, test it, then move on. Never write the next module until the last one works.</p></div></section>
+<section id="s1"><h2><span class="num">1</span>Settings</h2><div class="box goal"><b>Goal</b><p>Store the game settings in one place and import the tool we need.</p></div><h3>Module spec</h3><table class="spec"><tr><th>Needs</th><td><code>random</code> (imported at the top)</td></tr><tr><th>Constant 1</th><td><code>NUM_DIGITS</code> = 3: length of the secret</td></tr><tr><th>Constant 2</th><td><code>MAX_GUESSES</code> = 10: tries allowed</td></tr></table><h3>Module map</h3><div class="gfx">
+
+
+<div class="kv">
+<code>NUM_DIGITS = 3</code><span>Length of the secret. Max 10, because there are only ten distinct digits.</span>
+<code>MAX_GUESSES = 10</code><span>How many tries the player gets.</span>
+</div>
+<p class="note">Change one number and the whole game adapts: no other line needs editing.</p>
+</div><h3>Key ideas</h3><ul><li>CAPITAL names are constants: set once, never changed while running.</li><li>One edit changes the whole game (e.g. 4 digits).</li></ul><div class="box try"><b>Check it works</b><p>Run the file. Nothing happens and there is no error.</p></div><div class="live"><b>Live-coding prompts:</b> Why are these at the top, not inside a function? What would break if we typed 3 everywhere instead?</div></section><section id="s2"><h2><span class="num">2</span>Make the secret</h2><div class="box goal"><b>Goal</b><p>Create a secret with no repeated digits.</p></div><h3>Module spec</h3><table class="spec"><tr><th>Name</th><td><code>make_secret</code></td></tr><tr><th>Input</th><td><code>n</code>, how many digits (default: <code>NUM_DIGITS</code>)</td></tr><tr><th>Returns</th><td>a <b>string</b> of n different digits, e.g. <code>'248'</code></td></tr><tr><th>Tools</th><td>list of the ten digits, shuffle, slice, join</td></tr></table><h3>Module map</h3><div class="gfx">
+
+
+<div class="row"><span class="lbl">1. digits = list('0123456789')</span>
+<div class="tile">0</div><div class="tile">1</div><div class="tile">2</div><div class="tile">3</div><div class="tile">4</div><div class="tile">5</div><div class="tile">6</div><div class="tile">7</div><div class="tile">8</div><div class="tile">9</div></div>
+<div class="arrow">↓ random.shuffle(digits)</div>
+<div class="row"><span class="lbl">2. shuffled in place (example)</span>
+<div class="tile pick">2</div><div class="tile pick">4</div><div class="tile pick">8</div><div class="tile dim">5</div><div class="tile dim">0</div><div class="tile dim">9</div><div class="tile dim">1</div><div class="tile dim">7</div><div class="tile dim">3</div><div class="tile dim">6</div></div>
+<div class="arrow">↓ digits[:n] then ''.join(...)</div>
+<div class="row"><span class="lbl">3. returns a string</span><div class="tile pick" style="width:auto;padding:0 12px">'248'</div></div>
+<p class="note">Because each digit appears once in the shuffled list, repeats are impossible.</p>
+</div><h3>Key ideas</h3><ul><li>Shuffle all ten digits, then keep the first n: repeats become impossible.</li><li>Result is a string, because we compare it with the typed guess later.</li></ul><div class="box try"><b>Check it works</b><p>Call it twice and print both. Expect two different 3-digit strings, such as <code>581</code> and <code>027</code>, and never a repeat like <code>118</code>.</p></div><div class="live"><b>Live-coding prompts:</b> Predict the output before running. What does slicing <code>[:3]</code> keep? What if n were 10?</div></section><section id="s3"><h2><span class="num">3</span>Give clues</h2><div class="box goal"><b>Goal</b><p>Compare a guess with the secret and return the right clue text.</p></div><h3>Module spec</h3><table class="spec"><tr><th>Name</th><td><code>get_clues</code></td></tr><tr><th>Inputs</th><td><code>guess</code> and <code>secret</code> (strings of the same length)</td></tr><tr><th>Returns</th><td><code>You got it!</code>, <code>Bagels</code>, or clues joined by spaces</td></tr><tr><th>Rules</th><td>Same digit, same place: <b class="F">Fermi</b>. In the secret, wrong place: <b class="P">Pico</b>. Nothing: <b class="B">Bagels</b>. Clues sorted alphabetically.</td></tr><tr><th>Must not</th><td>print or ask for input (a pure function)</td></tr></table><h3>Module map</h3><div class="gfx">
+
+
+<table>
+<tr><th>i</th><th>guess[i]</th><th>secret[i]</th><th>Same spot?</th><th>In secret?</th><th>Clue</th></tr>
+<tr><td>0</td><td>8</td><td>2</td><td>no</td><td>yes</td><td class="P">Pico</td></tr>
+<tr><td>1</td><td>4</td><td>4</td><td>yes</td><td>-</td><td class="F">Fermi</td></tr>
+<tr><td>2</td><td>3</td><td>8</td><td>no</td><td>no</td><td>none</td></tr>
+</table>
+<p class="note" style="margin:0 0 10px">clues = ['Pico', 'Fermi'] → <code>clues.sort()</code> → ['Fermi', 'Pico'] → <b>"Fermi Pico"</b>. Sorting stops the order from revealing which position was right.</p>
+<svg viewBox="0 0 440 340" role="img" aria-label="Flowchart for scoring one digit">
+<defs><marker id="a1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path class="ah" d="M0,0L10,5L0,10z"/></marker></defs>
+<rect class="node ctl" x="20" y="12" width="200" height="32" rx="8"/><text class="m" x="120" y="32">for i in range(len(guess))</text>
+<path class="ln" d="M120,44V70" marker-end="url(#a1)"/>
+<polygon class="node dec" points="120,70 230,115 120,160 10,115"/><text class="m" x="120" y="119">guess[i]==secret[i]?</text>
+<path class="ln" d="M230,115H290" marker-end="url(#a1)"/><text class="y" x="258" y="107">Yes</text>
+<rect class="node gen" x="290" y="95" width="130" height="40" rx="8"/><text class="m" x="355" y="119">append 'Fermi'</text>
+<path class="ln" d="M120,160V185" marker-end="url(#a1)"/><text class="n" x="134" y="176" style="text-anchor:start">No</text>
+<polygon class="node dec" points="120,185 230,230 120,275 10,230"/><text class="m" x="120" y="234">guess[i] in secret?</text>
+<path class="ln" d="M230,230H290" marker-end="url(#a1)"/><text class="y" x="258" y="222">Yes</text>
+<rect class="node inp" x="290" y="210" width="130" height="40" rx="8"/><text class="m" x="355" y="234">append 'Pico'</text>
+<path class="ln" d="M120,275V300" marker-end="url(#a1)"/><text class="n" x="134" y="292" style="text-anchor:start">No</text>
+<rect class="node term" x="40" y="300" width="160" height="30" rx="15"/><text class="m" x="120" y="319">add nothing</text>
+</svg>
+<p class="note">Two shortcuts around the loop: <code>guess == secret</code> returns <b>"You got it!"</b> immediately, and an empty clue list returns <b>"Bagels"</b>.</p>
+</div><h3>Key ideas</h3><ul><li>Check the exact win first, then score each position.</li><li>Sort the clues so their order does not leak which place was right.</li></ul><div class="box try"><b>Check it works</b><table><tr><th>guess</th><th>secret</th><th>Expected result</th></tr><tr><td>843</td><td>248</td><td class="P">Fermi Pico</td></tr><tr><td>248</td><td>248</td><td class="F">You got it!</td></tr><tr><td>159</td><td>248</td><td class="B">Bagels</td></tr><tr><td>284</td><td>248</td><td>Fermi Pico Pico</td></tr></table></div><div class="live"><b>Live-coding prompts:</b> Trace 843 vs 248 on the board, position by position, before writing any code. Ask: what if there are no clues at all?</div></section><section id="s4"><h2><span class="num">4</span>Ask for a guess</h2><div class="box goal"><b>Goal</b><p>Keep asking until the player types exactly the right number of digits.</p></div><h3>Module spec</h3><table class="spec"><tr><th>Name</th><td><code>ask_guess</code></td></tr><tr><th>Input</th><td><code>num_guesses</code>, used only in the prompt text</td></tr><tr><th>Returns</th><td>a valid guess: exactly <code>NUM_DIGITS</code> digits, trimmed of spaces</td></tr><tr><th>Rule</th><td>Repeat while the length is wrong <b>or</b> it is not all digits</td></tr></table><h3>Module map</h3><div class="gfx">
+
+
+<svg viewBox="0 0 440 270" role="img" aria-label="Flowchart for input validation loop">
+<defs><marker id="a2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path class="ah" d="M0,0L10,5L0,10z"/></marker></defs>
+<rect class="node term" x="20" y="12" width="200" height="32" rx="16"/><text class="m" x="120" y="32">guess = ''</text>
+<path class="ln" d="M120,44V80" marker-end="url(#a2)"/>
+<polygon class="node dec" points="120,80 230,130 120,180 10,130"/>
+<text class="m" x="120" y="127">len ≠ NUM_DIGITS</text><text class="m" x="120" y="142">or not isdecimal()</text>
+<path class="ln" d="M230,130H275" marker-end="url(#a2)"/><text class="y" x="252" y="122">Yes</text>
+<rect class="node inp" x="275" y="98" width="150" height="64" rx="8"/>
+<text class="m" x="350" y="120">print Guess #n</text><text class="m" x="350" y="136">guess = input('&gt; ')</text><text class="m" x="350" y="152">.strip()</text>
+<path class="ln" d="M350,98V62H120" marker-end="url(#a2)"/><text class="sm" x="235" y="56">ask again</text>
+<path class="ln" d="M120,180V228" marker-end="url(#a2)"/><text class="n" x="134" y="204" style="text-anchor:start">No (valid)</text>
+<rect class="node ctl" x="20" y="228" width="200" height="32" rx="8"/><text class="m" x="120" y="248">return guess</text>
+</svg>
+<p class="note"><code>.strip()</code> removes stray spaces, and <code>isdecimal()</code> rejects letters like "ab3".</p>
+</div><h3>Key ideas</h3><ul><li>Start with an empty guess so the loop runs at least once.</li><li>Trim spaces; reject letters and symbols.</li></ul><div class="box try"><b>Check it works</b><p>Type <code>abc</code>, then <code>12</code>, then <code>123</code>. The first two are rejected; <code>123</code> is returned.</p></div><div class="live"><b>Live-coding prompts:</b> Why does the loop use <b>or</b> and not <b>and</b>? Try <code>12a</code>: which half of the test catches it?</div></section><section id="s5"><h2><span class="num">5</span>Play one game</h2><div class="box goal"><b>Goal</b><p>Connect the three helpers into one complete round.</p></div><h3>Module spec</h3><table class="spec"><tr><th>Name</th><td><code>play_once</code></td></tr><tr><th>Input</th><td>none</td></tr><tr><th>Returns</th><td>nothing (it prints)</td></tr><tr><th>Uses</th><td><code>make_secret</code>, <code>ask_guess</code>, <code>get_clues</code></td></tr><tr><th>Ends when</th><td>the guess is correct, or guesses run out (then reveal the answer)</td></tr></table><h3>Module map</h3><div class="gfx">
+
+
+<svg viewBox="0 0 450 550" role="img" aria-label="Flowchart of one game">
+<defs><marker id="a3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path class="ah" d="M0,0L10,5L0,10z"/></marker></defs>
+<rect class="node gen" x="40" y="8" width="300" height="44" rx="8"/>
+<text class="m" x="190" y="27">secret = make_secret()</text><text class="m" x="190" y="43">print intro; num_guesses = 1</text>
+<path class="ln" d="M190,52V90" marker-end="url(#a3)"/>
+<polygon class="node dec" points="190,90 290,125 190,160 90,125"/>
+<text class="m" x="190" y="122">num_guesses</text><text class="m" x="190" y="137">≤ MAX_GUESSES ?</text>
+<path class="ln" d="M290,125H345" marker-end="url(#a3)"/><text class="n" x="316" y="117">No</text>
+<rect class="node term" x="345" y="110" width="90" height="30" rx="15"/><text class="m" x="390" y="129">return</text>
+<path class="ln" d="M190,160V190" marker-end="url(#a3)"/><text class="y" x="200" y="178" style="text-anchor:start">Yes</text>
+<rect class="node inp" x="60" y="190" width="260" height="30" rx="8"/><text class="m" x="190" y="209">guess = ask_guess(num_guesses)</text>
+<path class="ln" d="M190,220V240" marker-end="url(#a3)"/>
+<rect class="node pure" x="40" y="240" width="300" height="44" rx="8"/>
+<text class="m" x="190" y="259">clues = get_clues(guess, secret)</text><text class="m" x="190" y="275">print(clues); num_guesses += 1</text>
+<path class="ln" d="M190,284V305" marker-end="url(#a3)"/>
+<polygon class="node dec" points="190,305 290,340 190,375 90,340"/><text class="m" x="190" y="344">guess == secret ?</text>
+<path class="ln" d="M290,340H345" marker-end="url(#a3)"/><text class="y" x="316" y="332">Yes</text>
+<rect class="node term" x="345" y="325" width="90" height="30" rx="15"/><text class="m" x="390" y="344">break</text>
+<path class="ln" d="M190,375V405" marker-end="url(#a3)"/><text class="n" x="200" y="394" style="text-anchor:start">No</text>
+<polygon class="node dec" points="190,405 290,440 190,475 90,440"/>
+<text class="m" x="190" y="437">num_guesses</text><text class="m" x="190" y="452">&gt; MAX_GUESSES ?</text>
+<path class="ln" d="M290,440H338" marker-end="url(#a3)"/><text class="y" x="314" y="432">Yes</text>
+<rect class="node inp" x="338" y="413" width="104" height="54" rx="8"/>
+<text class="m" x="390" y="436">print "ran out"</text><text class="m" x="390" y="452">+ the answer</text>
+<path class="ln" d="M390,467V505" marker-end="url(#a3)"/>
+<rect class="node term" x="345" y="505" width="90" height="30" rx="15"/><text class="m" x="390" y="524">return</text>
+<path class="ln" d="M90,440H30V125H90" marker-end="url(#a3)"/><text class="n" x="60" y="432">No</text>
+<text class="sm" x="14" y="290" transform="rotate(-90 14 290)">next guess</text>
+</svg>
+</div><h3>Key ideas</h3><ul><li>A counter starts at 1 and grows each guess.</li><li>A correct guess leaves the loop early; running out prints the answer.</li></ul><div class="box try"><b>Check it works</b><p>Play a full game twice: win once, and lose once. On the losing game the answer must be shown after guess #10.</p></div><div class="live"><b>Live-coding prompts:</b> To test, temporarily print the secret. Where must the counter go up, before or after the check for running out?</div></section><section id="s6"><h2><span class="num">6</span>Main and play again</h2><div class="box goal"><b>Goal</b><p>Show the rules once, replay on request, and only start when run directly.</p></div><h3>Module spec</h3><table class="spec"><tr><th>Name</th><td><code>main</code></td></tr><tr><th>Input</th><td>none</td></tr><tr><th>Does</th><td>prints the rules, loops <code>play_once()</code>, asks to play again, says thanks</td></tr><tr><th>Entry guard</th><td>the game starts only when the file is run directly, not when imported</td></tr></table><h3>Module map</h3><div class="gfx">
+
+
+<svg viewBox="0 0 450 520" role="img" aria-label="Flowchart of main and replay loop">
+<defs><marker id="a4" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path class="ah" d="M0,0L10,5L0,10z"/></marker></defs>
+<rect class="node term" x="90" y="9" width="200" height="30" rx="15"/><text class="m" x="190" y="28">run the script</text>
+<path class="ln" d="M190,39V65" marker-end="url(#a4)"/>
+<polygon class="node dec" points="190,65 310,100 190,135 70,100"/><text class="m" x="190" y="104">__name__ == '__main__' ?</text>
+<path class="ln" d="M310,100H340" marker-end="url(#a4)"/><text class="n" x="326" y="92">No</text>
+<rect class="node term" x="340" y="78" width="100" height="44" rx="8"/><text class="m" x="390" y="97">imported:</text><text class="m" x="390" y="112">nothing runs</text>
+<path class="ln" d="M190,135V168" marker-end="url(#a4)"/><text class="y" x="200" y="156" style="text-anchor:start">Yes</text>
+<rect class="node ctl" x="40" y="168" width="300" height="44" rx="8"/><text class="m" x="190" y="187">main()</text><text class="m" x="190" y="203">print title + rules</text>
+<path class="ln" d="M190,212V238" marker-end="url(#a4)"/>
+<rect class="node ctl" x="80" y="238" width="220" height="34" rx="8"/><text class="m" x="190" y="260">play_once()</text>
+<path class="ln" d="M190,272V300" marker-end="url(#a4)"/>
+<rect class="node inp" x="60" y="300" width="260" height="40" rx="8"/><text class="m" x="190" y="317">print 'play again?'</text><text class="m" x="190" y="332">answer = input('&gt; ')</text>
+<path class="ln" d="M190,340V370" marker-end="url(#a4)"/>
+<polygon class="node dec" points="190,370 310,405 190,440 70,405"/><text class="m" x="190" y="409">starts with 'y' ?</text>
+<path class="ln" d="M70,405H30V255H80" marker-end="url(#a4)"/><text class="y" x="50" y="397">Yes</text>
+<path class="ln" d="M190,440V472" marker-end="url(#a4)"/><text class="n" x="200" y="460" style="text-anchor:start">No</text>
+<rect class="node term" x="80" y="472" width="220" height="30" rx="15"/><text class="m" x="190" y="491">print 'Thanks for playing!'</text>
+</svg>
+<p class="note">The guard means importing this file (for testing) won't start a game.</p>
+</div><h3>Key ideas</h3><ul><li>An endless loop plus an early exit is the standard replay pattern.</li><li>Accept yes, Yes, y, YES by lowering the case and checking the first letter.</li></ul><div class="box try"><b>Check it works</b><p>Finish a game, answer <code>yes</code>: a new game starts. Answer <code>no</code>: it says thanks and stops.</p></div><div class="live"><b>Live-coding prompts:</b> What happens if we remove the guard and import this file from another one?</div></section>
+<section id="s7"><h2>Common errors</h2><table><tr><th>Message or symptom</th><th>Usual cause</th></tr>
+<tr><td><code>IndentationError</code></td><td>Lines inside a function or loop need the same indent (4 spaces).</td></tr>
+<tr><td><code>NameError</code></td><td>A name is misspelled, or something was never imported or defined.</td></tr>
+<tr><td><code>SyntaxError</code> near a <code>def</code>, <code>if</code>, <code>for</code> or <code>while</code> line</td><td>Missing colon at the end of the line.</td></tr>
+<tr><td><code>IndexError: string index out of range</code></td><td>Guess and secret have different lengths.</td></tr>
+<tr><td>Game never ends</td><td>The counter is never increased.</td></tr>
+<tr><td>Secret has repeated digits</td><td>Shuffle all ten digits and slice, instead of picking random digits one by one.</td></tr></table>
+<div class="box idea"><b>Debugging habit</b><p>Read the last line of the error first, then the line number above it. Add a temporary print to see what a variable really holds.</p></div></section>
+<section id="s8"><h2>Challenges</h2><ol>
+<li><b>Easy:</b> set the digits to 4, then 5. Does everything still work?</li>
+<li><b>Easy:</b> set the guesses to 5 for a hard mode.</li>
+<li><b>Medium:</b> print how many guesses are left after each wrong guess.</li>
+<li><b>Medium:</b> keep a score of games won and print it on quit.</li>
+<li><b>Hard:</b> let the player choose the number of digits at the start.</li>
+<li><b>Hard:</b> reject guesses with repeated digits (hint: a set removes duplicates).</li></ol>
+<h3>Check your understanding</h3><ol><li>Why does the clue module not print or ask for input?</li><li>What would happen if the clues were not sorted?</li><li>What is the job of the entry guard?</li></ol></section></main></body></html>
